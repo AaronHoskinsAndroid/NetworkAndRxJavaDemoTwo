@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,32 +7,45 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRandomUser"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
     <Button
         android:id="@+id/btnMakeCallUsingHttpUrlConnection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make Call Using HttpUrlConnection"
-        android:onClick="onHttpUrlClicked"/>
+        android:onClick="onHttpUrlClicked"
+        android:text="Make Call Using HttpUrlConnection" />
 
     <Button
         android:id="@+id/btnMakeCallUsingOkHttpSync"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make Call Using OkHttp Sync"
-        android:onClick="onOkHttpClicked"/>
+        android:onClick="onOkHttpClicked"
+        android:text="Make Call Using OkHttp Sync" />
 
     <Button
         android:id="@+id/btnMakeCallUsingOkHttpAsync"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Make Call Using OkHttp Async"
-        android:onClick="onOkHttpClicked"/>
+        android:onClick="onOkHttpClicked"
+        android:text="Make Call Using OkHttp Async" />
+
+    <Button
+        android:id="@+id/btnMakeCallUsingRetrofitAsync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onRetrofitClicked"
+        android:text="Make Call Using Retrofit Async" />
+
+    <Button
+        android:id="@+id/btnMakeCallUsingRetrofitRxJava"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onRetrofitClicked"
+        android:text="Make Call Using Retrofit RxJava" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRandomUser"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

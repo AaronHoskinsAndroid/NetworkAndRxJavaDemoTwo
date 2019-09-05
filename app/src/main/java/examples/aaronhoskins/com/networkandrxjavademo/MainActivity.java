@@ -21,9 +21,14 @@ import java.util.List;
 import examples.aaronhoskins.com.networkandrxjavademo.model.datasource.remote.HttpUrlConnectionHelper;
 import examples.aaronhoskins.com.networkandrxjavademo.model.datasource.remote.OkhttpHelper;
 import examples.aaronhoskins.com.networkandrxjavademo.model.datasource.remote.RandomUserAsyncTask;
+import examples.aaronhoskins.com.networkandrxjavademo.model.datasource.remote.retrofit.RandomUserObserver;
+import examples.aaronhoskins.com.networkandrxjavademo.model.datasource.remote.retrofit.RetrofitHelper;
 import examples.aaronhoskins.com.networkandrxjavademo.model.events.RnadomUserResponseEvent;
 import examples.aaronhoskins.com.networkandrxjavademo.model.randomuser.RandomMeResponse;
 import examples.aaronhoskins.com.networkandrxjavademo.model.randomuser.Result;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements HttpUrlConnectionHelper.HttpCallback {
     private RecyclerView rvUserList;
@@ -107,5 +112,21 @@ public class MainActivity extends AppCompatActivity implements HttpUrlConnection
             List<Result> resultList = randomUserEvent.getRandomMeResponse().getResults();
             populateRecyclerView(resultList);
         }
+    }
+
+    public void onRetrofitClicked(View view) {
+        RetrofitHelper retrofitHelper = new RetrofitHelper();
+        switch (view.getId()) {
+            case R.id.btnMakeCallUsingRetrofitAsync:
+                retrofitHelper.getRandomUsersAsync("5", "female");
+                break;
+            case R.id.btnMakeCallUsingRetrofitRxJava:
+                retrofitHelper.getObservableService().getUsers("5", "male")
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(new RandomUserObserver());
+                break;
+        }
+
     }
 }
